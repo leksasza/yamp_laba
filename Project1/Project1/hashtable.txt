@@ -1,0 +1,45 @@
+INDEX		 KEY		 VALUE
+33		int		key word
+34		int		key word
+37		%		deviders
+38		%		deviders
+39		%		deviders
+42		*		deviders
+43		+		deviders
+44		,		deviders
+45		,		deviders
+59		fuck()		Id
+60		;		deviders
+61		;		deviders
+62		=		deviders
+63		;		deviders
+64		=		deviders
+65		;		deviders
+66		=		deviders
+67		;		deviders
+68		;		deviders
+76		return		key word
+87		float		key word
+97		a		Id
+98		b		Id
+99		c		Id
+100		a		Id
+101		b		Id
+102		c		Id
+103		c		Id
+104		a		Id
+105		b		Id
+106		c		Id
+107		k		Id
+108		k		Id
+109		k		Id
+123		{		deviders
+125		}		deviders
+
+Mistakes amount: 0
+
+Mistakes amount: 3
+
+'+', '-' or ';' expected
+'+', '-' or ';' expected
+'+', '-' or ';' expected

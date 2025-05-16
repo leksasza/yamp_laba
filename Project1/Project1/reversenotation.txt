@@ -1,0 +1,15 @@
+int fuck() Function 
+a b float 2 Descr 
+c k int 2 Descr 
+a b  * 10 c  %  + k =
+a 10  %  c =
+1.2 c  %  b =
+k return Function_End
+Mistakes amount: 6
+
+Implict type conversion, expected int
+Implict type conversion, expected int
+Implict type conversion, expected int
+'%' only for integer numbers 
+Implict type conversion, expected float
+'%' only for integer numbers 

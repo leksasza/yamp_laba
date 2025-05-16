@@ -1,0 +1,8 @@
+int fuck() {
+float a , b ;
+int c , k ;
+k = a * b + 10 % c ; 
+c = a % 10 ;
+b = 1.2 % c ; 
+return k ; 
+}
