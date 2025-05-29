@@ -7,13 +7,13 @@ using namespace std;
 class Parser
 {
 private:
-	vector<string>program; // вектор хранит текст программы
-	int pos; // позиция в тексте
-	int mistakes_num; // колво ошибок
-	tree parser_tree; // дерево
+	vector<string>program; // РІРµРєС‚РѕСЂ С…СЂР°РЅРёС‚ С‚РµРєСЃС‚ РїСЂРѕРіСЂР°РјРјС‹
+	int pos; // РїРѕР·РёС†РёСЏ РІ С‚РµРєСЃС‚Рµ
+	int mistakes_num; // РєРѕР»РІРѕ РѕС€РёР±РѕРє
+	tree parser_tree; // РґРµСЂРµРІРѕ
 	tree temp_tree;
 	tree sub_tree;
-	vector<string>mistakes; // вектор ошибок 
+	vector<string>mistakes; // РІРµРєС‚РѕСЂ РѕС€РёР±РѕРє 
 	string curr_word; 
 	lexical_analysis la;
 	int q;
@@ -34,7 +34,7 @@ public:
 
 	}
 	void Parse() {
-		// вызываем биген, дескрипшнс, операторс, энд
+		// РІС‹Р·С‹РІР°РµРј Р±РёРіРµРЅ, РґРµСЃРєСЂРёРїС€РЅСЃ, РѕРїРµСЂР°С‚РѕСЂСЃ, СЌРЅРґ
 		parser_tree.add_node("Begin", "Function");
 		Begin();
 		parser_tree.insert(temp_tree, "Begin");
@@ -59,19 +59,19 @@ public:
 		temp_tree.cleaner();
 	}
 	void Begin() {
-		temp_tree.add_node("Type", "Begin"); // бегин образовывает нетерминал тайп
+		temp_tree.add_node("Type", "Begin"); // Р±РµРіРёРЅ РѕР±СЂР°Р·РѕРІС‹РІР°РµС‚ РЅРµС‚РµСЂРјРёРЅР°Р» С‚Р°Р№Рї
 
-		// двигаемся на следующее слово. вызываем лексический анализатор. он возвращает пару q состояние автомата и тип обработанной строки
+		// РґРІРёРіР°РµРјСЃСЏ РЅР° СЃР»РµРґСѓСЋС‰РµРµ СЃР»РѕРІРѕ. РІС‹Р·С‹РІР°РµРј Р»РµРєСЃРёС‡РµСЃРєРёР№ Р°РЅР°Р»РёР·Р°С‚РѕСЂ. РѕРЅ РІРѕР·РІСЂР°С‰Р°РµС‚ РїР°СЂСѓ q СЃРѕСЃС‚РѕСЏРЅРёРµ Р°РІС‚РѕРјР°С‚Р° Рё С‚РёРї РѕР±СЂР°Р±РѕС‚Р°РЅРЅРѕР№ СЃС‚СЂРѕРєРё
 		curr_word = la.Get_Word(pos);
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
 
-		Type(temp_tree); // вызываем тайп
-		FunctionName(); // бегин образовывает функшннейм
+		Type(temp_tree); // РІС‹Р·С‹РІР°РµРј С‚Р°Р№Рї
+		FunctionName(); // Р±РµРіРёРЅ РѕР±СЂР°Р·РѕРІС‹РІР°РµС‚ С„СѓРЅРєС€РЅРЅРµР№Рј
 		curr_word = la.Get_Word(pos);
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
-		if (curr_word == "{") { // проверяем кончается ли фигурной скобочкой, она образовывается от бегина
+		if (curr_word == "{") { // РїСЂРѕРІРµСЂСЏРµРј РєРѕРЅС‡Р°РµС‚СЃСЏ Р»Рё С„РёРіСѓСЂРЅРѕР№ СЃРєРѕР±РѕС‡РєРѕР№, РѕРЅР° РѕР±СЂР°Р·РѕРІС‹РІР°РµС‚СЃСЏ РѕС‚ Р±РµРіРёРЅР°
 			temp_tree.add_node(curr_word, "Begin");
 		}
 		else {
@@ -80,7 +80,7 @@ public:
 		}
 	}
 	void Type(tree& tr) {
-		// если слово инт или флоат, добавляем его к нетерминалу тайп, иначе выдаем ошибку
+		// РµСЃР»Рё СЃР»РѕРІРѕ РёРЅС‚ РёР»Рё С„Р»РѕР°С‚, РґРѕР±Р°РІР»СЏРµРј РµРіРѕ Рє РЅРµС‚РµСЂРјРёРЅР°Р»Сѓ С‚Р°Р№Рї, РёРЅР°С‡Рµ РІС‹РґР°РµРј РѕС€РёР±РєСѓ
 		if (curr_word == "int" || curr_word == "float")
 			tr.add_node(curr_word, "Type");
 		else {
@@ -94,14 +94,14 @@ public:
 		curr_word = la.Get_Word(pos);
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
-		Id(temp_tree); // вызываем фунцию айди
+		Id(temp_tree); // РІС‹Р·С‹РІР°РµРј С„СѓРЅС†РёСЋ Р°Р№РґРё
 	}
-	void Descriptions(tree& tr) { // дескрипшнс (описания переменных)
+	void Descriptions(tree& tr) { // РґРµСЃРєСЂРёРїС€РЅСЃ (РѕРїРёСЃР°РЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С…)
 		curr_word = la.Get_Word(pos);
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
 
-		tree subtr = tree("Descr"); // создаем поддерево для первого перечисления переменных
+		tree subtr = tree("Descr"); // СЃРѕР·РґР°РµРј РїРѕРґРґРµСЂРµРІРѕ РґР»СЏ РїРµСЂРІРѕРіРѕ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С…
 		Descr(subtr);
 		tr.add_node("Descr", "Descriptions");
 		tr.insert(subtr, "Descr");
@@ -111,7 +111,7 @@ public:
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
 		
-		// до тех пор пока встречаем инт или флоат, продолжаем создавать поддеревья для перечисления переменных
+		// РґРѕ С‚РµС… РїРѕСЂ РїРѕРєР° РІСЃС‚СЂРµС‡Р°РµРј РёРЅС‚ РёР»Рё С„Р»РѕР°С‚, РїСЂРѕРґРѕР»Р¶Р°РµРј СЃРѕР·РґР°РІР°С‚СЊ РїРѕРґРґРµСЂРµРІСЊСЏ РґР»СЏ РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С…
 		while (curr_word == "int" || curr_word== "float") {
 			subtr = tree("Descr");
 			Descr(subtr);
@@ -123,15 +123,15 @@ public:
 	void Descr(tree&tr) {
 		tr.add_node("Type", "Descr");
 
-		Type(tr); // дескр образовывает тип, вызываем тип
+		Type(tr); // РґРµСЃРєСЂ РѕР±СЂР°Р·РѕРІС‹РІР°РµС‚ С‚РёРї, РІС‹Р·С‹РІР°РµРј С‚РёРї
 		
 		tree subtr = tree("VarList");
 		tr.add_node("VarList", "Descr");
-		VarList(subtr); // вызываем варлист
+		VarList(subtr); // РІС‹Р·С‹РІР°РµРј РІР°СЂР»РёСЃС‚
 		tr.insert(subtr, "VarList");
 		subtr.cleaner();
 
-		if (curr_word != ";") { // проверяем кончается ли перечисление переменных точкой с запятой
+		if (curr_word != ";") { // РїСЂРѕРІРµСЂСЏРµРј РєРѕРЅС‡Р°РµС‚СЃСЏ Р»Рё РїРµСЂРµС‡РёСЃР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С… С‚РѕС‡РєРѕР№ СЃ Р·Р°РїСЏС‚РѕР№
 		//	tr.add_node(";", "Id");
 		//}
 		//else {
@@ -140,15 +140,15 @@ public:
 		}
 	}
 	void VarList(tree&tr) {
-		tr.add_node("Id", "VarList"); // варлист образовывает ид
+		tr.add_node("Id", "VarList"); // РІР°СЂР»РёСЃС‚ РѕР±СЂР°Р·РѕРІС‹РІР°РµС‚ РёРґ
 		curr_word = la.Get_Word(pos);
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
-		Id(tr); // вызываем ид, проверяем является ли слово названием переменной
+		Id(tr); // РІС‹Р·С‹РІР°РµРј РёРґ, РїСЂРѕРІРµСЂСЏРµРј СЏРІР»СЏРµС‚СЃСЏ Р»Рё СЃР»РѕРІРѕ РЅР°Р·РІР°РЅРёРµРј РїРµСЂРµРјРµРЅРЅРѕР№
 		curr_word = la.Get_Word(pos);
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
-		while (curr_word == ",") { // до тех пор пока идет перечисление, пока встречаем запятые, вызываем айди
+		while (curr_word == ",") { // РґРѕ С‚РµС… РїРѕСЂ РїРѕРєР° РёРґРµС‚ РїРµСЂРµС‡РёСЃР»РµРЅРёРµ, РїРѕРєР° РІСЃС‚СЂРµС‡Р°РµРј Р·Р°РїСЏС‚С‹Рµ, РІС‹Р·С‹РІР°РµРј Р°Р№РґРё
 			curr_word = la.Get_Word(pos);
 			q_str = la.Bypass(curr_word, q_str.first);
 			pos++;
@@ -160,7 +160,7 @@ public:
 	}
 	void Id(tree &tr) {
 		if (curr_word != "out of range") {
-			if (q_str.second == "Id") // если после вызова лексического анализатора получаем сто слово айди, то добавляем узел
+			if (q_str.second == "Id") // РµСЃР»Рё РїРѕСЃР»Рµ РІС‹Р·РѕРІР° Р»РµРєСЃРёС‡РµСЃРєРѕРіРѕ Р°РЅР°Р»РёР·Р°С‚РѕСЂР° РїРѕР»СѓС‡Р°РµРј СЃС‚Рѕ СЃР»РѕРІРѕ Р°Р№РґРё, С‚Рѕ РґРѕР±Р°РІР»СЏРµРј СѓР·РµР»
 				tr.add_node(curr_word, "Id");
 			else
 			{
@@ -173,12 +173,12 @@ public:
 			mistakes.push_back("Out of range");
 		}
 	}
-	void Operators(tree& tr) { // операторс -- операции 
+	void Operators(tree& tr) { // РѕРїРµСЂР°С‚РѕСЂСЃ -- РѕРїРµСЂР°С†РёРё 
 		curr_word = la.Get_Word(pos);
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
 		
-		tree subtr("Op"); // создаем поддерево оп и вызываем для него функцию оп
+		tree subtr("Op"); // СЃРѕР·РґР°РµРј РїРѕРґРґРµСЂРµРІРѕ РѕРї Рё РІС‹Р·С‹РІР°РµРј РґР»СЏ РЅРµРіРѕ С„СѓРЅРєС†РёСЋ РѕРї
 		Op(subtr);
 		tr.add_node("Op", "Operators");
 		tr.insert(subtr, "Op");
@@ -188,7 +188,7 @@ public:
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
 
-		// до тех пор пока не встречам слово ретерн либо пока не вышли за пределы текста, создаем поддеревья оп
+		// РґРѕ С‚РµС… РїРѕСЂ РїРѕРєР° РЅРµ РІСЃС‚СЂРµС‡Р°Рј СЃР»РѕРІРѕ СЂРµС‚РµСЂРЅ Р»РёР±Рѕ РїРѕРєР° РЅРµ РІС‹С€Р»Рё Р·Р° РїСЂРµРґРµР»С‹ С‚РµРєСЃС‚Р°, СЃРѕР·РґР°РµРј РїРѕРґРґРµСЂРµРІСЊСЏ РѕРї
 		while (curr_word != "return" && curr_word != "out of range") {
 			subtr = tree("Op");
 			Op(subtr);
@@ -202,14 +202,14 @@ public:
 	}
 	void Op(tree& tr) {
 		tr.add_node("Id", "Op");
-		Id(tr); // вызываем айди
+		Id(tr); // РІС‹Р·С‹РІР°РµРј Р°Р№РґРё
 		curr_word = la.Get_Word(pos);
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
-		if (curr_word == "=") { // дальше должен идти пробел, иначе ошибка, потом выражение
+		if (curr_word == "=") { // РґР°Р»СЊС€Рµ РґРѕР»Р¶РµРЅ РёРґС‚Рё РїСЂРѕР±РµР», РёРЅР°С‡Рµ РѕС€РёР±РєР°, РїРѕС‚РѕРј РІС‹СЂР°Р¶РµРЅРёРµ
 			tr.add_node("=", "Op");
 			tree expr_tree("Expr");
-			Expr(expr_tree); // создаем поддерево экспр и вызываем для него функцию экспр
+			Expr(expr_tree); // СЃРѕР·РґР°РµРј РїРѕРґРґРµСЂРµРІРѕ СЌРєСЃРїСЂ Рё РІС‹Р·С‹РІР°РµРј РґР»СЏ РЅРµРіРѕ С„СѓРЅРєС†РёСЋ СЌРєСЃРїСЂ
 			tr.add_node("Expr", "Op");
 			tr.insert(expr_tree, "Expr");
 			expr_tree.cleaner();
@@ -220,18 +220,18 @@ public:
 		}
 	}
 	void Expr(tree& tr) {
-		tree subtr("Term"); // создаем поддерево терм
+		tree subtr("Term"); // СЃРѕР·РґР°РµРј РїРѕРґРґРµСЂРµРІРѕ С‚РµСЂРј
 		Term(subtr);
-		tr.add_node("Term", "Expr"); // и добавляем его под экспр
+		tr.add_node("Term", "Expr"); // Рё РґРѕР±Р°РІР»СЏРµРј РµРіРѕ РїРѕРґ СЌРєСЃРїСЂ
 		tr.insert(subtr, "Term");
 		subtr.cleaner();
-		// обрабатываем операции либо конец операции (;)
-		if (curr_word == "+") { // от экспр может быть образовано терм + экспр и терм - экспр
+		// РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РѕРїРµСЂР°С†РёРё Р»РёР±Рѕ РєРѕРЅРµС† РѕРїРµСЂР°С†РёРё (;)
+		if (curr_word == "+") { // РѕС‚ СЌРєСЃРїСЂ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕР±СЂР°Р·РѕРІР°РЅРѕ С‚РµСЂРј + СЌРєСЃРїСЂ Рё С‚РµСЂРј - СЌРєСЃРїСЂ
 			tr.add_node("+", "Expr");
 			subtr = tree("Expr");
 			Expr(subtr);
 
-			tr.add_node("Expr", "Expr"); // создаем и добавляем поддерево экспр к экспр
+			tr.add_node("Expr", "Expr"); // СЃРѕР·РґР°РµРј Рё РґРѕР±Р°РІР»СЏРµРј РїРѕРґРґРµСЂРµРІРѕ СЌРєСЃРїСЂ Рє СЌРєСЃРїСЂ
 			tr.insert(subtr, "Expr");
 
 			subtr.cleaner();
@@ -255,7 +255,7 @@ public:
 		}
 	}
 	void Term(tree &tr) {
-		tree subtr("SimpleExpr"); // создаем поддерево симплэкспр
+		tree subtr("SimpleExpr"); // СЃРѕР·РґР°РµРј РїРѕРґРґРµСЂРµРІРѕ СЃРёРјРїР»СЌРєСЃРїСЂ
 		SimpleExpr(subtr);
 		tr.add_node("SimpleExpr", "Term");
 		tr.insert(subtr, "SimpleExpr");
@@ -265,8 +265,8 @@ public:
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
 
-		// обрабатываем операции *, /, %, вызываем для них терм
-		// так же как с экспр может быть образовано симпл экспр * терм, поэтому создаем поддерево терм под терм
+		// РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РѕРїРµСЂР°С†РёРё *, /, %, РІС‹Р·С‹РІР°РµРј РґР»СЏ РЅРёС… С‚РµСЂРј
+		// С‚Р°Рє Р¶Рµ РєР°Рє СЃ СЌРєСЃРїСЂ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕР±СЂР°Р·РѕРІР°РЅРѕ СЃРёРјРїР» СЌРєСЃРїСЂ * С‚РµСЂРј, РїРѕСЌС‚РѕРјСѓ СЃРѕР·РґР°РµРј РїРѕРґРґРµСЂРµРІРѕ С‚РµСЂРј РїРѕРґ С‚РµСЂРј
 		if (curr_word == "*") {
 			tr.add_node("*", "Term");
 			tree subtr("Term");
@@ -298,22 +298,22 @@ public:
 			subtr.cleaner();
 		}
 	}
-	void SimpleExpr(tree& tr) { // симплэкспр это либо ( экспр ), либо конст, либо ид
+	void SimpleExpr(tree& tr) { // СЃРёРјРїР»СЌРєСЃРїСЂ СЌС‚Рѕ Р»РёР±Рѕ ( СЌРєСЃРїСЂ ), Р»РёР±Рѕ РєРѕРЅСЃС‚, Р»РёР±Рѕ РёРґ
 		curr_word = la.Get_Word(pos);
-		if (isalpha(curr_word[0])) {  // айди
+		if (isalpha(curr_word[0])) {  // Р°Р№РґРё
 			tr.add_node("Id", "SimpleExpr");
 			curr_word = la.Get_Word(pos);
 			q_str = la.Bypass(curr_word, q_str.first);
 			pos++;
 			Id(tr);
 		}
-		else if (isdigit(curr_word[0])) { // конст
+		else if (isdigit(curr_word[0])) { // РєРѕРЅСЃС‚
 			tr.add_node("Const", "SimpleExpr");
 			Const(tr);
 		}
-		else if (curr_word == "(") { // открытая скобочка
+		else if (curr_word == "(") { // РѕС‚РєСЂС‹С‚Р°СЏ СЃРєРѕР±РѕС‡РєР°
 			tr.add_node("(", "SimpleExpr");
-			tree expr_tree("Expr"); // создаем и вызываем экспр, вставляем в дерево
+			tree expr_tree("Expr"); // СЃРѕР·РґР°РµРј Рё РІС‹Р·С‹РІР°РµРј СЌРєСЃРїСЂ, РІСЃС‚Р°РІР»СЏРµРј РІ РґРµСЂРµРІРѕ
 			curr_word = la.Get_Word(pos);
 			q_str = la.Bypass(curr_word, q_str.first);
 			pos++;
@@ -323,7 +323,7 @@ public:
 			
 			expr_tree.cleaner();
 
-			if (curr_word != ")") { // если скобочка после этого закрывается, добавялем в дерево, если нет -- ошибка
+			if (curr_word != ")") { // РµСЃР»Рё СЃРєРѕР±РѕС‡РєР° РїРѕСЃР»Рµ СЌС‚РѕРіРѕ Р·Р°РєСЂС‹РІР°РµС‚СЃСЏ, РґРѕР±Р°РІСЏР»РµРј РІ РґРµСЂРµРІРѕ, РµСЃР»Рё РЅРµС‚ -- РѕС€РёР±РєР°
 				mistakes_num++;
 				mistakes.push_back("')' expected");
 			}
@@ -337,11 +337,11 @@ public:
 		q_str = la.Bypass(curr_word, q_str.first);
 		pos++;
 		if (curr_word != "out of range") {
-			if (q_str.second == "float") { // если после лексического анализа получаем флоат, то добавляем узел "даблнамбер" к конст, и цифру под "даблнамбер"
+			if (q_str.second == "float") { // РµСЃР»Рё РїРѕСЃР»Рµ Р»РµРєСЃРёС‡РµСЃРєРѕРіРѕ Р°РЅР°Р»РёР·Р° РїРѕР»СѓС‡Р°РµРј С„Р»РѕР°С‚, С‚Рѕ РґРѕР±Р°РІР»СЏРµРј СѓР·РµР» "РґР°Р±Р»РЅР°РјР±РµСЂ" Рє РєРѕРЅСЃС‚, Рё С†РёС„СЂСѓ РїРѕРґ "РґР°Р±Р»РЅР°РјР±РµСЂ"
 				tr.add_node("DoubleNumber", "Const");
 				tr.add_node(curr_word, "DoubleNumber");
 			}
-			else if (q_str.second == "int") // то же самое для инт
+			else if (q_str.second == "int") // С‚Рѕ Р¶Рµ СЃР°РјРѕРµ РґР»СЏ РёРЅС‚
 			{
 				tr.add_node("IntNumber", "Const");
 				tr.add_node(curr_word, "IntNumber");
@@ -357,7 +357,7 @@ public:
 		}
 	}
 	void End() {
-		// энд это ретерн айди ; }
+		// СЌРЅРґ СЌС‚Рѕ СЂРµС‚РµСЂРЅ Р°Р№РґРё ; }
 		if (curr_word == "return") {
 			temp_tree.add_node("return", "End");
 			temp_tree.add_node("Id", "End");
@@ -407,4 +407,5 @@ public:
 			out << p.mistakes[i] << '\n';
 		return out;
 	};
+};
 };
