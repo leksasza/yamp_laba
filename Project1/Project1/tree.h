@@ -5,11 +5,11 @@ class node {
 public:
 	string data;
 	vector<node*> children;
-	//конструкторы
+	//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
 	node() : data(""), children(std::vector<node*>()) {};
 	node(std::string s) : data(s), children(std::vector<node*>()) {};
 	node(const node& node) : data(node.data), children(node.children) {};
-	//добавление в вектор
+	//РґРѕР±Р°РІР»РµРЅРёРµ РІ РІРµРєС‚РѕСЂ
 	void add_to_children(string s, node*& elem) {
 		node temp(s);
 		auto pointer = &elem->children;
@@ -19,10 +19,10 @@ public:
 class tree {
 private:
 	node* root;
-	//добавление узла
+	//РґРѕР±Р°РІР»РµРЅРёРµ СѓР·Р»Р°
 	void add_node(string, string, node*&);
 	node* find_node(std::string info, node*&);
-	//печать дерева
+	//РїРµС‡Р°С‚СЊ РґРµСЂРµРІР°
 	void print(ofstream& fout, node*, int);
 	void print_on_screen(node* node, int blank_space);
 	void insert(tree& tree1, std::string ins_pos, node*& cur_pos);
