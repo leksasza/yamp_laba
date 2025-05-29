@@ -1,5 +1,0 @@
-﻿  Source.cpp
-C:\Users\Саша\source\repos\Project1\Project1\dfa.h(35,1): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Саша\source\repos\Project1\Project1\lexicalanalysis.h(55,1): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\Саша\source\repos\Project1\Project1\tree.h(75): warning C4715: tree::find_node: значение возвращается не при всех путях выполнения
-  Project1.vcxproj -> C:\Users\Саша\source\repos\Project1\x64\Debug\Project1.exe
