@@ -13,12 +13,12 @@ int main() {
 	setlocale(LC_ALL, "Russian");
 	vector<string>Program;
 	string FileName;
-	cout << "Ââåäèòå íàçâàíèå ôàéëà" << endl;
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°" << endl;
 	cin >> FileName;
 	ifstream fin(FileName);
 	while (!fin.is_open())
 	{
-		cout << "Íåêîððåêòíîå íàçâàíèå ôàéëà. Ïîïðîáóéòå åù¸ ðàç" << endl;
+		cout << "ÐÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð°. ÐŸÐ¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ñ‘ Ñ€Ð°Ð·" << endl;
 		cin >> FileName;
 		fin.open(FileName);
 		if (fin.is_open())
