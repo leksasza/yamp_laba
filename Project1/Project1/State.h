@@ -6,7 +6,7 @@ class State {
 	friend class lexical_analysis;
 	friend class dfa;
 private:
-	vector<pair<int, string>>vec; // состояние состоит из пары куда мы можем перейти по этому состоянию и по чему
+	vector<pair<int, string>>vec; // СЃРѕСЃС‚РѕСЏРЅРёРµ СЃРѕСЃС‚РѕРёС‚ РёР· РїР°СЂС‹ РєСѓРґР° РјС‹ РјРѕР¶РµРј РїРµСЂРµР№С‚Рё РїРѕ СЌС‚РѕРјСѓ СЃРѕСЃС‚РѕСЏРЅРёСЋ Рё РїРѕ С‡РµРјСѓ
 public:
 	State() {};
 	State(vector<pair<int, string>>v) {
