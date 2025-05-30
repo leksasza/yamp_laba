@@ -1,9 +1,0 @@
-INDEX		 KEY		 VALUE
-0		{		deviders
-1		int		key word
-2		float		key word
-
-Mistakes amount: 2
-
-Incorrect symbol: fuck()
-Incorrect symbol: a,b,c;
