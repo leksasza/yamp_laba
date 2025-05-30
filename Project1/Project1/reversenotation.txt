@@ -1,4 +1,4 @@
-int fuck() Function 
+int func() Function 
 a b float 2 Descr 
 c k int 2 Descr 
 a b  * 10 c  %  + k =
