@@ -1,4 +1,4 @@
-int fuck() {
+int func() {
 float a , b ;
 int c , k ;
 k = a * b + 10 % c ; 
