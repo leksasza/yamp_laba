@@ -1,8 +1,0 @@
-float abc() {
-int a , c ;
-float b , d ;
-c = 12345 ;
-b = 1.34 ;
-a = b + c ;
-return a ;
-}
