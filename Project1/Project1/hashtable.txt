@@ -8,7 +8,7 @@ INDEX		 KEY		 VALUE
 43		+		deviders
 44		,		deviders
 45		,		deviders
-59		fuck()		Id
+59		func()		Id
 60		;		deviders
 61		;		deviders
 62		=		deviders
